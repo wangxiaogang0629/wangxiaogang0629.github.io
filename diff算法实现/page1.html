@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VUE-Demo</title>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src='./diffVue.js'></script>
+
+	<style type="text/css">
+		body {
+			padding: 50px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		#box {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.btn1 {
+			width: 100px;
+			height: 40px;
+			font-size: 16px;
+			margin-top: 100px;
+		}
+
+		#new {
+			width: 980px;
+			height: auto;
+			padding: 50px 0 100px 0;
+		}
+		
+		.active {
+		}
+
+		.title {
+			height: 40px;
+			background-color: #ccc;
+			color: #fff;
+			font-size: 18px;
+			line-height: 40px;
+			text-align: center;
+			cursor: pointer;
+			border: 1px solid #ddd;
+			letter-spacing: 2px;
+			margin-bottom: 30px;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.listItem {
+			list-style: none;
+			height: 30px;
+			padding: 0 10px;
+			display: flex;
+			align-items: center;
+			line-height: 20px;
+		}
+
+		.sort {
+			background: #ddd;
+			height: 20px;
+			width: 20px;
+			text-align: center;
+			margin-right: 20px;
+			font-size: 12px;
+			line-height: 20px;
+		}
+
+		.name {
+			height: 20px;
+			width: 60px;
+			text-align: center;
+			margin-right: 40px;
+			color: #888;
+		}
+
+		.vote {
+			height: 20px;
+			width: 60px;
+			text-align: center;
+			margin-right: 40px;
+		}
+
+		.listItem:nth-child(1) .sort {
+			background: #ffd34d;
+		}
+
+		.listItem:nth-child(2) .sort {
+			background: #e8e8eb;
+		}
+
+		.listItem:nth-child(3) .sort {
+			background: #f9a61e;
+		}
+
+		.voteBtn {
+			height: 20px;
+			text-align: center;
+			color: #4990e2;
+			cursor: pointer;
+			margin-right: 25px;
+		}
+
+		.voteBtn:hover {
+			color: #3281dd;
+			cursor: pointer;
+		}
+
+		.waiver {
+			cursor: pointer;
+			height: 20px;
+			width: 20px;
+			background-image: url('./shanchu.png');
+			margin-right: 20px;
+		}
+
+		.cancelVoteBtn {
+			color: #E25E49;
+		}
+
+		
+
+	</style>
+</head>
+<body>
+	<div id = 'box'>
+	<button class="btn1">参加竞选</button>
+		<div id = 'new'></div>
+	</div>
+	
+	<script type="text/javascript">
+		$(function() {
+
+
+		let data = [{id: 0, name: '孙俪', vote: 0,}, {id: 1, name: '邓超', vote: 0,}];
+
+		function renderList(data) {
+
+			return data.map((v, i) => {
+						return createVDOM('li', { class: 'listItem', key: v.id, position: i }, [
+									createVDOM( 'span', { class: 'waiver', key: 'waiver', id: v.id }, '' ),
+									createVDOM( 'span', { class: 'sort', key: 'sort' }, i+1 ),
+									createVDOM( 'span', { class: 'name', key: 'name' }, v.name ),
+									createVDOM( 'span', { class: 'vote', key: 'vote' }, v.vote ),
+									createVDOM( 'span', { class: 'voteBtn', key: 'voteBtn', id: v.id }, '投票' ),
+									createVDOM( 'span', { class: 'cancelVoteBtn', key: 'cancelVoteBtn', id: v.id }, '取消投票' ),
+								]);
+					});
+
+		}
+
+		let newNav = [
+			createVDOM( 'div', { class: 'container active' }, [
+					createVDOM( 'div', { class: 'title', key: 1, }, '排行榜' ),
+					createVDOM( 'ul', { class: 'list', key: 2, }, renderList(data) ),
+				]
+			),
+		];
+
+		let oldTree = createVDOMTree(newNav[0]);
+
+		document.querySelector('#new').appendChild(oldTree.node);
+		let voteBtn = $('.voteBtn');
+
+		$('.btn1').on('click', () => {
+			let nameArr = ['杨幂', '刘恺威', '黄晓明', 'Baby'];
+
+			let isAdd = true;
+
+			console.log('人员数组data',data)
+
+			for (let i=0; i < nameArr.length; i++) {
+
+				let hasName = false;
+				data.forEach((item) => {
+					if (item.name == nameArr[i]) {
+						hasName = true;
+					}
+				
+				})
+
+				if (!hasName) {
+					let _data = data;
+
+					if (data.length > 0) {
+						function sortId(a, b) {
+		        			return a.id - b.id;
+		     			}
+
+						_data.sort(sortId);
+
+					}
+					
+					data.push({
+						id: data.length > 0 ? _data[_data.length - 1].id + 1 : 0,
+						name: nameArr[i],
+						vote: 0
+					})
+					break;
+				}
+
+			}
+
+
+			function sortVote1(a, b) {
+    			return b.vote - a.vote;
+ 			}
+
+			data.sort(sortVote1);
+
+
+			
+			let _newNav = [
+				createVDOM( 'div', { class: 'container active' }, [
+						createVDOM( 'div', { class: 'title', key: 1 }, '排行榜' ),
+						createVDOM( 'ul', { class: 'list', key: 2 }, renderList(data) ),
+					]
+				),
+				
+			];
+
+			let _newTree = createVDOMTree(_newNav[0]);
+
+			let diffRes = diff(oldTree, _newTree);
+
+			console.log('diff结果', diffRes.changeQueue)
+
+			console.log('diff结果oldele', diffRes.oldEle)
+			render(diffRes.changeQueue);
+
+			diffRes.changeQueue.forEach((v) => {
+
+				if (v.type == 'ADD') {
+					voteBtnClick(v.addNode.children[v.addNode.children.length - 2].node);
+
+					delBtnClick(v.addNode.children[0].node);
+
+					cancelVoteClick(v.addNode.children[v.addNode.children.length - 1].node);
+				}
+			})
+
+			
+		})
+
+
+		document.querySelectorAll('.voteBtn').forEach((v) => {
+			voteBtnClick(v);
+		})
+
+		function voteBtnClick(ele) {
+
+			ele.onclick = (e) => {
+
+				console.log('点击事件开始')
+			
+
+				let id = e.target.id;
+				data.forEach((v, i) => {
+					if (v.id == id) {
+						v.vote++;
+					}
+
+				})
+
+				function sortVote(a, b) {
+			        return b.vote - a.vote;
+			    }
+
+				let _data = data.sort(sortVote);
+
+
+				let _newNav = [
+					createVDOM( 'div', { class: 'container active' }, [
+							createVDOM( 'div', { class: 'title', key: 1 }, '排行榜' ),
+							createVDOM( 'ul', { class: 'list', key: 2 }, renderList(data) ),
+						]
+					),
+					
+				];
+
+				let _newTree = createVDOMTree(_newNav[0]);
+
+				let diffRes = diff(oldTree, _newTree);
+
+				console.log('diff结果', diffRes.changeQueue)
+
+				console.log('diff结果oldele', diffRes.oldEle)
+
+				render(diffRes.changeQueue);
+
+
+			}
+		}
+
+
+
+		document.querySelectorAll('.waiver').forEach((v) => {
+			delBtnClick(v);
+		})
+
+
+
+		function delBtnClick(ele) {
+
+			ele.onclick = (e) => {
+
+				console.log('点击事件开始')
+			
+
+				let id = e.target.id;
+				data.forEach((v, i) => {
+					if (v.id == id) {
+						data.splice(i, 1);
+					}
+
+				})
+
+				function sortVote(a, b) {
+			        return b.vote - a.vote;
+			    }
+
+				let _data = data.sort(sortVote);
+
+
+				let _newNav = [
+					createVDOM( 'div', { class: 'container active' }, [
+							createVDOM( 'div', { class: 'title', key: 1 }, '排行榜' ),
+							createVDOM( 'ul', { class: 'list', key: 2 }, renderList(data) ),
+						]
+					),
+					
+				];
+
+				let _newTree = createVDOMTree(_newNav[0]);
+
+				let diffRes = diff(oldTree, _newTree);
+
+				console.log('diff结果', diffRes.changeQueue)
+
+				console.log('diff结果oldele', diffRes.oldEle)
+
+				render(diffRes.changeQueue);
+
+
+			}
+		}
+
+
+		document.querySelectorAll('.cancelVoteBtn').forEach((v) => {
+			cancelVoteClick(v);
+		})
+
+
+
+		function cancelVoteClick(ele) {
+
+			ele.onclick = (e) => {
+
+				console.log('点击事件开始')
+			
+
+				let id = e.target.id;
+				data.forEach((v, i) => {
+					if (v.id == id && v.vote > 0) {
+						v.vote--;
+					}
+
+				})
+
+				function sortVote(a, b) {
+			        return b.vote - a.vote;
+			    }
+
+				let _data = data.sort(sortVote);
+
+
+				let _newNav = [
+					createVDOM( 'div', { class: 'container active' }, [
+							createVDOM( 'div', { class: 'title', key: 1 }, '排行榜' ),
+							createVDOM( 'ul', { class: 'list', key: 2 }, renderList(data) ),
+						]
+					),
+					
+				];
+
+				let _newTree = createVDOMTree(_newNav[0]);
+
+				let diffRes = diff(oldTree, _newTree);
+
+				console.log('diff结果', diffRes.changeQueue)
+
+				console.log('diff结果oldele', diffRes.oldEle)
+
+				render(diffRes.changeQueue);
+
+
+			}
+		}
+})
+
+	</script>
+
+
+
+
+</body>
+</html>
