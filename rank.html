@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+	<style>
+		body {
+			padding: 100px 50px;
+			margin: 0;
+		}
+		#echartBox {
+			height: 300px;
+			width: 70%;
+			margin-bottom: 20px;
+		}
+
+		#echartBox1 {
+			height: 300px;
+			width: 70%;
+		}
+
+		.container {
+			width: 1920px;
+			display: flex;
+			align-items: center;
+		}
+
+		.name {
+			width: 100px;
+			white-space: nowrap;
+			font-size: 18px;
+			color: #000;
+		}
+		.title {
+			width: 1920px;
+			font-size: 30px;
+			color: #000;
+			margin-bottom: 30px;
+			text-align: center;
+		}
+		.name1 {
+			color: #e94d0c;
+		}
+
+		.name2 {
+			color: #39b0e7;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div  class="title">3月考核分数统计</div>
+
+	<div class="container">
+		<div  class="name name1"></div>
+		<div id = 'echartBox'></div>
+	</div>
+
+	<div class="container">
+		<div class="name name2"></div>
+		<div id = 'echartBox1'></div>
+	</div>
+	
+	<script>
+
+		let echartBox = document.getElementById('echartBox');
+		let myChart = echarts.init(echartBox);
+
+		let dataHe = [10, 10, 10, 5, 5];
+		let dataShe = [10, 5, 10, 10, 5];
+
+		let sheTotal = 0;
+		let heTotal = 0;
+
+		dataHe.forEach((v, i) => {
+			sheTotal += dataShe[i];
+			heTotal += v;
+		})
+		$('.name1').html(`木疙瘩瘩得分(${ heTotal })`);
+		$('.name2').html(`宝疙蛋蛋得分(${ sheTotal })`);
+	            
+
+		let option = {
+	    legend: {},
+	    tooltip: {},
+	    dataset: {
+	        source: [
+	            ['Time', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+	            ['他', 10, 10, 10, 5, 5],
+	            ['她', 10, 5, 10, 10, 5]
+	        ]
+	    },
+	    xAxis: [
+	        {
+	        	type: 'category',
+	        	gridIndex: 0,
+	        	nameTextStyle: {
+	        		color: '#4990e2',
+	        		fontSize: '14px'
+	        	},
+	        	axisTick: {
+	        		show: false
+	        	},
+	        	splitLine: {
+	        		show: false
+	        	}
+	        },
+	    ],
+	    yAxis: [
+	        {
+	        	gridIndex: 0,
+	        	splitLine: {
+	        		show: false
+	        	}
+	        },
+	    ],
+	    grid: [
+	        {width: '90%'},
+	        {height: '100%'}
+	    ],
+	    series: [
+	        // These series are in the first grid.
+	        {
+	        	type: 'bar',
+	        	seriesLayoutBy: 'row',
+	        	itemStyle: {
+	        		color: '#e94d0c'
+	        	},
+	        	barWidth: '25px'
+	        },
+	        {
+	        	type: 'bar',
+	        	seriesLayoutBy: 'row',
+	        	itemStyle: {
+	        		color: '#39b0e7'
+	        	},
+	        	barWidth: '25px'
+	        },
+	    ]
+		};
+
+		myChart.setOption(option);
+
+
+		let echartBox1 = document.getElementById('echartBox1');
+		let myChart1 = echarts.init(echartBox1);
+
+		let option1 = {
+	    legend: {},
+	    tooltip: {},
+	    dataset: {
+	        source: [
+	            ['Time', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+	            ['他', 10, 10, 10, 5, 5],
+	            ['她', 10, 5, 10, 5, 5]
+	        ]
+	    },
+	    xAxis: [
+	        {
+	        	type: 'category',
+	        	gridIndex: 0,
+	        	nameTextStyle: {
+	        		color: '#4990e2',
+	        		fontSize: '14px'
+	        	},
+	        	axisTick: {
+	        		show: false
+	        	},
+	        	splitLine: {
+	        		show: false
+	        	}
+	        },
+	    ],
+	    yAxis: [
+	        {
+	        	gridIndex: 0,
+	        	splitLine: {
+	        		show: false
+	        	},
+	        },
+	    ],
+	    grid: [
+	        {width: '100%'},
+	        {height: '100%'}
+	    ],
+	    series: [
+	        // These series are in the first grid.
+	        {
+	        	type: 'bar',
+	        	seriesLayoutBy: 'row',
+	        	itemStyle: {
+	        		color: '#e94d0c'
+	        	},
+	        	barWidth: '25px'
+	        },
+	        {
+	        	type: 'bar',
+	        	seriesLayoutBy: 'row',
+	        	itemStyle: {
+	        		color: '#39b0e7'
+	        	},
+	        	barWidth: '25px'
+	        },
+	    ]
+		};
+
+		myChart1.setOption(option1);
+
+
+	</script>
+
+
+
+
+
+</body>
+</html>
+
+
