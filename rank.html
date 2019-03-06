@@ -70,15 +70,17 @@
 		let echartBox = document.getElementById('echartBox');
 		let myChart = echarts.init(echartBox);
 
-		let dataHe = [10, 10, 10, 5, 5];
-		let dataShe = [10, 5, 10, 10, 5];
+		let dataHe = [10, 10, 10, 10, 5, 5];
+		let shePing = [10, 10, 5, 5, 5, 5];
+		let dataShe = [10, 10, 5, 0, 10, 5];
+		let hePing = [10, 10, 5, 0, 10, 5];
 
 		let sheTotal = 0;
 		let heTotal = 0;
 
 		dataHe.forEach((v, i) => {
-			sheTotal += dataShe[i];
-			heTotal += v;
+			sheTotal += dataShe[i] + hePing[i] / 2;
+			heTotal += v + shePing[i] / 2;
 		})
 		$('.name1').html(`木疙瘩瘩得分(${ heTotal })`);
 		$('.name2').html(`宝疙蛋蛋得分(${ sheTotal })`);
@@ -90,8 +92,8 @@
 	    dataset: {
 	        source: [
 	            ['Time', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-	            ['他', 10, 10, 10, 5, 5],
-	            ['她', 10, 5, 10, 10, 5]
+	            ['他', ...dataHe],
+	            ['她', ...shePing]
 	        ]
 	    },
 	    xAxis: [
@@ -155,8 +157,8 @@
 	    dataset: {
 	        source: [
 	            ['Time', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-	            ['他', 10, 10, 10, 5, 5],
-	            ['她', 10, 5, 10, 5, 5]
+	             ['他', ...hePing],
+	            ['她', ...dataShe]
 	        ]
 	    },
 	    xAxis: [
