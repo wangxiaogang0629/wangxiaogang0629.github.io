@@ -13,8 +13,8 @@ yarn-error.log
 .DS_Store
 
 node_modules
-/sass/.sass-cache
-/sass/.scss
+/life/sass/.sass-cache
+/life/sass/.scss
 
 /public/uploads
 .git
