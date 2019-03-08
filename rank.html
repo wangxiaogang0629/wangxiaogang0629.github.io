@@ -1,434 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>She And He Assessment</title>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" href="./sass/rank.css">
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-	<!-- <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script> -->
-	<script src="https://cdn.bootcss.com/echarts/3.8.5/echarts.min.js"></script>
-	<style>
-		body {
-			padding: 100px 50px;
-			margin: 0;
-		}
-		#echartLine-he, #echartLine-she  {
-			height: 300px;
-			width: 70%;
-			margin-bottom: 20px;
-		}
-		#echartBox {
-			height: 300px;
-			width: 70%;
-			margin-bottom: 20px;
-		}
-
-		#echartBox1 {
-			height: 300px;
-			width: 70%;
-		}
-
-		.container {
-			width: 1920px;
-			display: flex;
-			align-items: center;
-		}
-
-		.name {
-			width: 100px;
-			white-space: nowrap;
-			font-size: 18px;
-			color: #000;
-		}
-		.title {
-			width: 1920px;
-			font-size: 30px;
-			color: #000;
-			margin-bottom: 30px;
-			text-align: center;
-		}
-		.name1 {
-			color: #e94d0c;
-		}
-
-		.name2 {
-			color: #39b0e7;
-		}
-
-	</style>
+	<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+	<script src="https://cdn.bootcss.com/sass.js/0.11.0-beta.1/sass.min.js"></script>
+	<script type="text/javascript" src="./js/rank.js"></script>
+	<script type="text/javascript" src="./data/rankData2019.js"></script>
 </head>
 <body>
 
 	<div  class="title">3月考核分数统计</div>
 
 	<div class="container">
-		<div  class="name name1"></div>
-		<div id = 'echartBox'></div>
+		<div class="inner">
+			<div  class="name name1"></div>
+			<div id = 'echartBox'></div>
+		</div>
 	</div>
 
 	<div class="container">
-		<div class="name name2"></div>
-		<div id = 'echartBox1'></div>
+		<div class="inner">
+			<div class="name name2"></div>
+			<div id = 'echartBox1'></div>
+		</div>
 	</div>
 
 
 	<div class="container">
-		<div  class="name name">123123</div>
-		<div id = 'echartLine-he'></div>
+		<div class="inner">
+			<div  class="name" id = 'he-line'></div>
+			<div id = 'echartLine-he'></div>
+		</div>
 	</div>
 
 	<div class="container">
-		<div class="name name">12312</div>
-		<div id = 'echartLine-she'></div>
+		<div class="inner">
+			<div class="name" id = 'she-line'></div>
+			<div id = 'echartLine-she'></div>
+		</div>
 	</div>
-	
+
 	<script>
 
-		// let echartBox = document.getElementById('echartBox');
-		// let myChart = echarts.init(echartBox);
+		let echartBox = document.getElementById('echartBox');
+		let echartBox1 = document.getElementById('echartBox1');
+		let heBlockChart = echarts.init(echartBox);
+		let sheBlockChart = echarts.init(echartBox1);
 
-		// let dataHe = [10, 10, 10, 10, 5, 5];
-		// let shePing = [10, 10, 5, 5, 5, 5];
-		// let dataShe = [10, 10, 5, 0, 10, 5];
-		// let hePing = [10, 10, 5, 0, 10, 5];
+		let echartBlockHeText = document.getElementsByClassName('name1');
+		let echartBlockSheText = document.getElementsByClassName('name2');
 
-		// let sheTotal = 0;
-		// let heTotal = 0;
-
-		// dataHe.forEach((v, i) => {
-		// 	sheTotal += (dataShe[i] + hePing[i]) / 2;
-		// 	heTotal += (v + shePing[i]) / 2;
-		// })
-		// $('.name1').html(`木疙瘩瘩得分(${ heTotal })`);
-		// $('.name2').html(`宝疙蛋蛋得分(${ sheTotal })`);
-	            
-
-		// let option = {
-	 //    legend: {},
-	 //    tooltip: {},
-	 //    dataset: {
-	 //        source: [
-	 //            ['Time', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-	 //            ['他', ...dataHe],
-	 //            ['她', ...shePing]
-	 //        ]
-	 //    },
-	 //    xAxis: [
-	 //        {
-	 //        	type: 'category',
-	 //        	gridIndex: 0,
-	 //        	nameTextStyle: {
-	 //        		color: '#4990e2',
-	 //        		fontSize: '14px'
-	 //        	},
-	 //        	axisTick: {
-	 //        		show: false
-	 //        	},
-	 //        	splitLine: {
-	 //        		show: false
-	 //        	}
-	 //        },
-	 //    ],
-	 //    yAxis: [
-	 //        {
-	 //        	gridIndex: 0,
-	 //        	splitLine: {
-	 //        		show: false
-	 //        	}
-	 //        },
-	 //    ],
-	 //    grid: [
-	 //        {width: '90%'},
-	 //        {height: '100%'}
-	 //    ],
-	 //    series: [
-	 //        // These series are in the first grid.
-	 //        {
-	 //        	type: 'bar',
-	 //        	seriesLayoutBy: 'row',
-	 //        	itemStyle: {
-	 //        		color: '#e94d0c'
-	 //        	},
-	 //        	barWidth: '25px'
-	 //        },
-	 //        {
-	 //        	type: 'bar',
-	 //        	seriesLayoutBy: 'row',
-	 //        	itemStyle: {
-	 //        		color: '#39b0e7'
-	 //        	},
-	 //        	barWidth: '25px'
-	 //        },
-	 //    ]
-		// };
-
-		// myChart.setOption(option);
-
-
-		// let echartBox1 = document.getElementById('echartBox1');
-		// let myChart1 = echarts.init(echartBox1);
-
-		// let option1 = {
-	 //    legend: {},
-	 //    tooltip: {},
-	 //    dataset: {
-	 //        source: [
-	 //            ['Time', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-	 //             ['他', ...hePing],
-	 //            ['她', ...dataShe]
-	 //        ]
-	 //    },
-	 //    xAxis: [
-	 //        {
-	 //        	type: 'category',
-	 //        	gridIndex: 0,
-	 //        	nameTextStyle: {
-	 //        		color: '#4990e2',
-	 //        		fontSize: '14px'
-	 //        	},
-	 //        	axisTick: {
-	 //        		show: false
-	 //        	},
-	 //        	splitLine: {
-	 //        		show: false
-	 //        	}
-	 //        },
-	 //    ],
-	 //    yAxis: [
-	 //        {
-	 //        	gridIndex: 0,
-	 //        	splitLine: {
-	 //        		show: false
-	 //        	},
-	 //        },
-	 //    ],
-	 //    grid: [
-	 //        {width: '90%'},
-	 //        {height: '100%'}
-	 //    ],
-	 //    series: [
-	 //        // These series are in the first grid.
-	 //        {
-	 //        	type: 'bar',
-	 //        	seriesLayoutBy: 'row',
-	 //        	itemStyle: {
-	 //        		color: '#e94d0c'
-	 //        	},
-	 //        	barWidth: '25px'
-	 //        },
-	 //        {
-	 //        	type: 'bar',
-	 //        	seriesLayoutBy: 'row',
-	 //        	itemStyle: {
-	 //        		color: '#39b0e7'
-	 //        	},
-	 //        	barWidth: '25px'
-	 //        },
-	 //    ]
-		// };
-
-		// myChart1.setOption(option1);
-
+		getBlockChart(echartBlockHeText[0], heBlockChart, heData[3], '木疙瘩瘩');
+		getBlockChart(echartBlockSheText[0], sheBlockChart, sheData[3], '宝疙蛋蛋');
 
 	</script>
-
-
 
 	<script>
 
 		let echartLineHe = document.getElementById('echartLine-he');
 		let echartLineShe = document.getElementById('echartLine-she');
 
+		let echartLineHeText = document.getElementById('he-line');
+		let echartLineSheText = document.getElementById('she-line');
+
 		let heChart = echarts.init(echartLineHe);
 		let sheChart = echarts.init(echartLineShe);
 
-		let heData = {
-			1: { he: 10, she: 10 },
-			2: { he: 10, she: 10 },
-			3: { he: 10, she: 5 },
-			4: { he: 10, she: 5 },
-			5: { he: 5, she: 5 },
-			6: { he: 5, she: 5 },
-		};
-
-
-	    let _data = heData;
-	    let _hoverText = 'hoverText';
-	    let _echartStyle = {
-	            grid: {
-	              show: false,
-	              // backgroundColor: '',
-	            },
-	            x: {
-	              xLineColor: '#bdbabd',
-	              textColor: '#281a4f',
-	            },
-	            y: {
-	              	yLineColor: '#bdbabd',
-	         		textColor: '#281a4f',
-	            },
-	            smooth: true,
-	            symbol: 'circle',
-	            symbolSize: 9,
-	            // symbolStyle: {
-	            //   color: '#4e87ae',  // 曲线颜色
-	            //   borderColor: '#5e41ac',
-	            //   borderWidth: 1,
-	            //   borderType: 'solid',
-	            // },
-	    };;
-
-	    let xData = [];
-	    let yData = [];
-
-	    for(var key in _data) {
-	      xData.push(key);
-	      yData.push(_data[key]);
-	    }
-
-	    console.log(xData,yData, 'xuanranshuju')
-
-	    sheChart.setOption({
-	        tooltip: {
-	          show: false,
-	          trigger: 'axis',
-	          textStyle: {
-	            fontSize: 10,
-	            fontWeight: 'lighter',
-	          },
-	          axisPointer: {
-	            type: '',
-	          },
-	          // formatter:  hoverText,
-	          // backgroundColor: 'red', // 提示框背景色
-	          padding: [5, 10]
-	        },
-	        grid: { // 根据网格大小可以指定图形大小
-	          show: _echartStyle.grid.show,
-	          left: '0%',
-          	  right: '0%',
-          	  top: 0,
-	          width: '70%',
-	          height: '90%',
-	          // containLabel: true,
-	          // backgroundColor: _echartStyle.grid.backgroundColor,
-	        },
-	        xAxis: {
-	          data: xData.map(function (item) {
-	              return item;
-	          }),
-	          type: 'category',
-	          axisLine: {
-	            lineStyle: {
-	              color: _echartStyle.x.xLineColor, // X轴轴线颜色
-	            },
-	          },
-	          axisLabel: {
-	            textStyle: {
-	              color: _echartStyle.x.textColor, // X轴文字颜色
-	              fontSize: 12,
-	              fontFamily: 'PingFangSC-Light',
-	            },
-	          },
-	          axisTick: {
-	            show: false,  // 是否显示刻度线
-	          },
-	        },
-	        yAxis: {
-	          type: 'value',
-	          splitLine: {
-	              show: true,
-	              lineStyle: {
-	                // 使用深浅的间隔色
-	                color: '#F5F7F8', // Y轴网格线颜色
-	              }
-	          },
-	          axisLine: {
-	            lineStyle: {
-	              color: _echartStyle.y.yLineColor, // Y轴轴线颜色
-	            },
-	          },
-	          axisLabel: {
-	            textStyle: {
-	              color: _echartStyle.y.textColor,
-	              fontSize: 12,
-	              fontFamily: 'PingFangSC-Light',
-	            }
-	          },
-	          axisTick: {
-	            show: false,  // 是否显示刻度线
-	          },
-	        },
-	        series: [
-	          {
-	            type: 'line',
-	            data: yData.map(function (item) {
-	                return item.he;
-	            }),
-	            smooth: _echartStyle.smooth,
-	            showSymbol: false,
-	            // hoverAnimation: false,
-	            // symbol: _echartStyle.symbol, // 拐点类型
-	            // symbolSize: _echartStyle.symbolSize, // 拐点大小
-	            itemStyle: {  // 设置曲线上点的样式
-	              normal: {
-	                color: '#64caf9',  // 曲线颜色
-	                borderColor: '#64caf9',
-	                borderWidth: 1,
-	                borderType: 'solid',
-	              },
-	              // normal: _echartStyle.symbolStyle,
-	            },
-	            areaStyle: {  // 填充颜色
-	                normal: {
-	                    color: "#64caf9",
-	                    opacity: 0.2
-	                }
-	            },
-	          },
-	          {
-	            type: 'line',
-	            data: yData.map(function (item) {
-	                return item.she;
-	            }),
-	            smooth: _echartStyle.smooth,
-	            showSymbol: false,
-	            // hoverAnimation: false,
-	            // symbol: _echartStyle.symbol, // 拐点类型
-	            // symbolSize: _echartStyle.symbolSize, // 拐点大小
-	            itemStyle: {  // 设置曲线上点的样式
-	              normal: {
-	                color: '#d5368c',  // 曲线颜色
-	                borderColor: '#d5368c',
-	                borderWidth: 1,
-	                borderType: 'solid',
-	              },
-	              // normal: _echartStyle.symbolStyle,
-	            },
-	            areaStyle: {  // 填充颜色
-	                normal: {
-	                    color: "#d5368c",
-	                    opacity: 0.2
-	                }
-	            },
-	          },
-	        ],
-	    });
-
-    // 自适应窗口
-    // window.addEventListener("resize", () => { echartBox.resize();});
+    getEchart(echartLineHeText, heChart, heData[3], '木疙瘩瘩');
+    getEchart(echartLineSheText, sheChart, sheData[3], '宝疙蛋蛋');
 
 
 	</script>
 
-
-
-
-
-
-
-
 </body>
 </html>
-
-
