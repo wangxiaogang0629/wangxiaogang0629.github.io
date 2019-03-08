@@ -152,8 +152,8 @@ function getEchart (ele, eleChart, data, user) {
           // symbolSize: _echartStyle.symbolSize, // 拐点大小
           itemStyle: {  // 设置曲线上点的样式
             normal: {
-              color: '#d5368c',  // 曲线颜色
-              borderColor: '#d5368c',
+              color: 'rgba(255, 48, 160, 0.88)',  // 曲线颜色
+              borderColor: 'rgba(255, 48, 160, 0.88)',
               borderWidth: 1,
               borderType: 'solid',
             },
@@ -161,7 +161,7 @@ function getEchart (ele, eleChart, data, user) {
           },
           areaStyle: {  // 填充颜色
               normal: {
-                  color: "#d5368c",
+                  color: "rgba(255, 48, 160, 0.88)",
                   opacity: 0.2
               }
           },
@@ -247,7 +247,7 @@ function getBlockChart(ele, eleChart, data, user) {
           type: 'bar',
           seriesLayoutBy: 'row',
           itemStyle: {
-            color: '#d5368c'
+            color: 'rgba(255, 48, 160, 0.88)'
           },
           barWidth: '16px'
         },
