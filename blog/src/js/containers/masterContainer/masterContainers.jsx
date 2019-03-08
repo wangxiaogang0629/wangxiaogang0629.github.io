@@ -14,7 +14,7 @@ class MasterContainer extends Component {
       children,
     } = this.props;
 
-    console.log(this.props,children)
+    // console.log(this.props,children)
 
     return (
       <div>

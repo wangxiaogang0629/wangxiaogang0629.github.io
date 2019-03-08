@@ -1,3 +1,4 @@
+
 const path = require('path');
 const webpack = require('webpack');
 
@@ -11,12 +12,11 @@ const config = {
     filename: '[name].js'
   },
 
-  devServer: {
-    contentBase: __dirname + '/js',
-    compress: true,
-    hot: true,
-    port: 9000
-  },
+  // devServer: {
+  //   contentBase: __dirname + '/public',
+  //   compress: true,
+  //   port: 9000
+  // },
 
   module: {
     rules: [
