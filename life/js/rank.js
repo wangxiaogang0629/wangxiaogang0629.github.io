@@ -239,7 +239,7 @@ function getBlockChart(ele, eleChart, data, user) {
           type: 'bar',
           seriesLayoutBy: 'row',
           itemStyle: {
-            color: '#e94d0c'
+            color: '#64caf9'
           },
           barWidth: '16px'
         },
@@ -247,7 +247,7 @@ function getBlockChart(ele, eleChart, data, user) {
           type: 'bar',
           seriesLayoutBy: 'row',
           itemStyle: {
-            color: '#39b0e7'
+            color: '#d5368c'
           },
           barWidth: '16px'
         },
