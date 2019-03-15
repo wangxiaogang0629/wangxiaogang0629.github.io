@@ -194,16 +194,40 @@ function getBlockChart(ele, eleChart, data, user) {
   }
 
   ele.innerHTML = `${ user }得分(${ total })`;
+  let _blockX = [];
+  let _blockY = {};
+
+  if (user == '木疙瘩瘩') {
+    _block = [['Time', ...xData],['他', ...dataHe]]
+    _blockY = {
+      type: 'bar',
+      seriesLayoutBy: 'row',
+      itemStyle: {
+        color: '#64caf9'
+      },
+      barWidth: '14px'
+    };
+
+  } else {
+    _block = [['Time', ...xData],['她', ...dataShe]];
+
+    _blockY = {
+      type: 'bar',
+      seriesLayoutBy: 'row',
+      itemStyle: {
+        color: '#FF7CAC'
+      },
+      barWidth: '14px'
+    };
+  }
+
+  console.log(_block,'_block')
 
   eleChart.setOption({
     legend: {},
     tooltip: {},
     dataset: {
-        source: [
-            ['Time', ...xData],
-            ['他', ...dataHe],
-            ['她', ...dataShe]
-        ]
+        source: [..._block]
     },
     xAxis: [
         {
@@ -233,24 +257,6 @@ function getBlockChart(ele, eleChart, data, user) {
         {width: '70%'},
         {height: '100%'}
     ],
-    series: [
-        // These series are in the first grid.
-        {
-          type: 'bar',
-          seriesLayoutBy: 'row',
-          itemStyle: {
-            color: '#64caf9'
-          },
-          barWidth: '16px'
-        },
-        {
-          type: 'bar',
-          seriesLayoutBy: 'row',
-          itemStyle: {
-            color: '#FF7CAC'
-          },
-          barWidth: '16px'
-        },
-    ]
+    series: [ _blockY ]
   });
 }
