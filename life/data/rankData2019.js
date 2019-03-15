@@ -7,6 +7,12 @@ let heData = {
     5: { he: 5, she: 5 },
     6: { he: 5, she: 5 },
     7: { he: 5, she: 10 },
+    8: { he: 0, she: 0 },
+    9: { he: 5, she: 5 },
+    10: { he: 0, she: 0 },
+    11: { he: 0, she: 0 },
+    12: { he: 5, she: 5 },
+    13: { he: 10, she: 10 },
   },
 };
 
@@ -19,5 +25,11 @@ let sheData = {
     5: { he: 10, she: 10 },
     6: { he: 5, she: 5 },
     7: { he: 5, she: 0 },
+    8: { he: 5, she: 5 },
+    9: { he: 0, she: 0 },
+    10: { he: 0, she: 0 },
+    11: { he: 0, she: 0 },
+    12: { he: 0, she: 0 },
+    13: { he: 10, she: 10 },
   },
 }
