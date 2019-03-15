@@ -5,8 +5,9 @@ import { Router, browserHistory, hashHistory } from 'react-router';
 import AppRouter from './appRouter.js';
 import Master from './containers/masterContainer/masterContainers.jsx';
 
+
 ReactDOM.render(
-  <Router history = { browserHistory } >
+  <Router history = { hashHistory } >
     { AppRouter }
   </Router>
 , document.getElementById('app'));
