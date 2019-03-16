@@ -36,6 +36,6 @@ let sheData = {
     13: { he: 10, she: 10 },
     14: { he: 10, she: 10 },
     15: { he: 5, she: 5 },
-    16: { he: 0, she: 0 },
+    16: { he: 5, she: 5 },
   },
 }
