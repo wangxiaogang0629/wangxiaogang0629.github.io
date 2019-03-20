@@ -21,36 +21,43 @@ class HabitMonth extends Component {
     } = this.props;
 
     let month = [];
-    let _day = new Date(selectYear, selectMonth - 1, 17);
+    let _day = new Date(selectYear, selectMonth - 1, 20);
     let _week = _day.getDay();
     console.log('_day',selectYear, selectMonth, _day.getDay());
 
-    if (month == '1' || month == '3' || month == '5' || month == '7' ||
-        month == '8' || month == '10' || month == '12') {
+    if (selectMonth == '1' || selectMonth == '3' || selectMonth == '5' ||
+        selectMonth == '7' || selectMonth == '8' || selectMonth == '10' ||
+        selectMonth == '12') {
+
         month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
           16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
         ];
 
-        for (let i=0; i < Math.ceil(month / 7); i++) {
-
-          if (i == 0) {
-            month.push()
-          }
+        for (let i=0; i < _week; i++) {
+          month.unshift('')
         }
 
-
-
-    } else if (month == '2') {
+    } else if (selectMonth == '2') {
       month = year%4 == 0
                 ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
                     16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
                 : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
                     16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29];
+
+      for (let i=0; i < _week; i++) {
+        month.unshift('')
+      }
     } else {
       month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
         16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
       ];
+
+      for (let i=0; i < _week; i++) {
+        month.unshift('')
+      }
     }
+
+    console.log('month',month)
 
     return (
       <div style = { assign({}, styles.container, containerStyle) }>
@@ -60,7 +67,7 @@ class HabitMonth extends Component {
             {
               this.state.week.map((v, i) => {
                 return (
-                  <div key = { i }>{ v }</div>
+                  <div key = { i } style = { styles.weekItem }>{ v }</div>
                 );
               })
             }
@@ -70,8 +77,12 @@ class HabitMonth extends Component {
               month.map((v, i) => {
 
                 return (
-                  <div key = { i } style = { styles.dayItem }>
-
+                  <div key = { i }
+                    className = 'day-item'
+                    style = { assign({}, styles.dayItem, {
+                      marginRight: (i + 1) % 7 == 0 ? '0' : '28.5px',
+                    }) }>
+                    { v }
                   </div>
                 );
               })
@@ -109,17 +120,25 @@ const styles = {
     fontSize: '14px',
     padding: '0px 24px',
   },
+  weekItem: {
+    width: 22,
+    textAlign: 'center',
+  },
   dayList: {
     display: 'flex',
-    flexWarp: 'warp',
+    flexWrap: 'wrap',
     color: '#141414',
     fontSize: '14px',
     padding: '0px 24px',
   },
   dayItem: {
-    height: 22,
-    width: 22,
-    padding: '5px 0',
+    height: 25,
+    width: 25,
+    lineHeight: '25px',
+    textAlign: 'center',
+    border: '1px solid #ddd',
+    borderRadius: '50%',
+    marginBottom: '10px'
   }
 };
 
