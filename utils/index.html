@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="./index.js"></script>
+  </head>
+  <body>
+    
+    <script type="text/javascript">
+
+      let date = new Date();
+
+      console.log('date',date)
+      
+      let case1 = Utils.toDate(date, '/')
+
+      console.log('date',case1)
+
+      let case2 = Utils.dateForMoment(date)
+
+      console.log('date',case2)
+
+      let case3 = Utils.isValidMobileNo(18699992222)
+      console.log('date',case3)
+      
+
+      let case4 = Utils.timestampFormat(date)
+      console.log('date',case4)
+
+      let case5 = Utils.timeFormatDate(date)
+      console.log('date',case5)
+
+      let case6 = Utils.getMonthLastDay(2019,3)
+      console.log('date',case6)
+
+      let case7 = Utils.timeFormatWeek(date)
+      console.log('date',case7)
+
+      let case8 = Utils.timerestFormat(3660)
+      console.log('date',case8)
+
+      let case9 = Utils.timerestFormatMS(3660)
+      console.log('date',case9)
+
+      let case10 = Utils.trim('     开头有空格dat     中间有空格。 后面也有空格    ')
+      console.log('date',case10)
+      console.log('上面的原字符串','     开头有空格dat     中间有空格。 后面也有空格    ')
+
+      let case11 = Utils.setLocalStorage('date', '2019-03-19')
+      console.log('设置本地存储 ', 'date:2019-03-19')
+
+      let case12 = Utils.getLocalStorage('date')
+      console.log('获取本地存储date ', case12)
+
+
+      let case13 = Utils.isEnglishNub('23123213')
+      console.log('限制英文及数字',case13)
+
+      let case14 = Utils.isEnglishNubComma('--，')
+      console.log('限制英文、数字、逗号',case14)
+
+      let case15 = Utils.isEnglishNubCount('*12高不回家啊时')
+      console.log('限制英文、数字、算数符号',case15)
+
+      // let case16 = Utils.isEnglishNubCountCma('啊哈哈2313 ---')
+      // console.log('限制中英文、数字、算数符号',case16)
+
+      let case17 = Utils.isChinaName('是 v 的话')
+      console.log('限制中文',case17)
+
+      let case18 = Utils.isHandleExpression('是😄 v 的话')
+      console.log('限制特殊字符表情',case18)
+
+      let case19 = Utils.isValidNumber('10000.000')
+      console.log('判断金额',case19)
+
+      let case20 = Utils.formatCurrency('10000000000')
+      console.log('判断金额',case20)
+
+      let case21 = Utils.encrypt('xiaogang', '123456')
+      console.log('密码加密',case21)
+
+       let case22 = Utils.decrypt('9ed52cec2bc28f75', '123456')
+      console.log('密码解密',case22)
+
+      let case23 = Utils.getTimestampOne('2019-3-19')
+      console.log('转化为时间戳', case23)
+
+      let case24 = Utils.getTimestamp('2019-3-19 00:00:00')
+      console.log('转化为时间戳', case24)
+
+      let case25 = Utils.scrollMove(0, 1000, () => {
+        console.log('滚动结束')
+      })
+
+      let case26 = Utils.replaceYearMonthDay('2019年3月19', '/')
+      console.log('替换时间连接字符', case26)
+
+
+      let case27 = Utils.getBrowserInfo()
+      console.log('获取当前浏览器信息', case27)
+
+      
+
+        /** 有问题
+         *  @param {string}
+         *  @return {Boolean}
+         *  限制8位数字2位小数
+         */
+        // isNub(str) {
+        //   let reg = /^0\.([0-9]|\d[0-9])$|^[0-9]\d{0,8}\.\d{0,2}$|^[0-9]\d{0,8}$/;
+        //   return reg.test(str);
+        // }
+
+
+      
+
+
+
+      
+
+
+      
+
+
+      
+
+
+      
+
+      
+
+      
+      
+
+      
+      
+    </script>
+  </body>
+</html>

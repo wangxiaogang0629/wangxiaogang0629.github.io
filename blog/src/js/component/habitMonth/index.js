@@ -31,11 +31,14 @@ class HabitMonth extends Component {
           16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
         ];
 
-        for (let i=0; i < Math.ceil(month / 7); i++)
+        for (let i=0; i < Math.ceil(month / 7); i++) {
 
-        if (_week == ) {
-
+          if (i == 0) {
+            month.push()
+          }
         }
+
+
 
     } else if (month == '2') {
       month = year%4 == 0
