@@ -19,6 +19,8 @@ let heData = {
     17: { he: 5, she: 5 },
     18: { he: 5, she: 5 },
     19: { he: 5, she: 10 },
+    20: { he: 5, she: 5 },
+    21: { he: 5, she: 5 },
   },
 };
 
@@ -43,5 +45,7 @@ let sheData = {
     17: { he: 0, she: 0 },
     18: { he: 5, she: 0 },
     19: { he: 0, she: 0 },
+    20: { he: 10, she: 10 },
+    21: { he: 5, she: 5 },
   },
 }
