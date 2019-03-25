@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import './index.scss';
 
 
 class Footer extends Component {
@@ -12,8 +13,8 @@ class Footer extends Component {
     } = this.props;
 
     return (
-      <div>
-        footer
+      <div className = 'footer'>
+         Design By 汪小岗 2018-2019
       </div>
     );
   }

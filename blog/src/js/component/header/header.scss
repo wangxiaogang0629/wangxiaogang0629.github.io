@@ -1,4 +1,25 @@
 .header {
   height: 50px;
   border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  .weather {
+
+    .site {
+      margin-right: 40px;
+      color: #4990e2;
+    }
+
+    .tmp {
+      color: #2ec75d;
+    }
+  }
 }
