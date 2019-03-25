@@ -14,12 +14,15 @@ class Header extends Component {
             now: '',
           }
         ],
-      }
+      },
+      site: '北京'
     };
   }
 
   _get = () => {
     // ecZSQ1IYyurBNhnPjtmM3Bus38NSSOfn
+
+    let that = this;
 
     var map = new BMap.Map("allmap");
     var point = new BMap.Point(116.331398,39.897445);
@@ -37,12 +40,27 @@ class Header extends Component {
     		alert('failed'+this.getStatus());
     	}
     });
+
+
+    function myFun(result){
+		    var cityName = result.name;
+  		  map.setCenter(cityName);
+  		  alert("当前定位城市:"+cityName);
+
+        that._getWeather(cityName);
+  	}
+
+  	var myCity = new BMap.LocalCity();
+  	myCity.get(myFun);
   }
 
-
-  componentDidMount() {
+  _getWeather = (cityName) => {
     let _url = 'https://free-api.heweather.net/s6/weather/now?location=' +
-      '北京' + '&key=7fa515daad2842d9bcc001031f109fce';
+      cityName + '&key=7fa515daad2842d9bcc001031f109fce';
+
+    that.setState({
+      site: cityName,
+    })
 
     $.ajax({
       url: _url,
@@ -57,6 +75,11 @@ class Header extends Component {
         console.log(err)
       }
     });
+  }
+
+
+  componentDidMount() {
+
 
     this._get();
   }
@@ -70,7 +93,7 @@ class Header extends Component {
         <div>LOGO</div>
 
         <div className = 'weather'>
-          <div className = 'site'>位置：{ '北京' }</div>
+          <div className = 'site'>位置：{ this.state.site }</div>
           <div className = 'tmp'>
             当前温度：{ this.state.weatherInfo.HeWeather6[0].now.tmp } ℃
           </div>
