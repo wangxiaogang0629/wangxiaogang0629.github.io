@@ -1,0 +1,100 @@
+
+.input {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+.select {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+.select-box {
+  width: 100%;
+  height: 100%;
+  color: #141414;
+  background: #FFFFFF;
+  border-radius: 3px;
+  border: 1px solid #DADADA;
+  box-sizing: border-box;
+  cursor: pointer;
+  line-height: 30px;
+  font-size: 12px;
+  padding-left: 5px;
+  transition: all 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: #4990e2;
+  }
+
+  &:hover {
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.select-item-box {
+  width: 100%;
+  height: 0;
+  color: #141414;
+  background: #FFFFFF;
+  overflow-y: scroll;
+  transition: height 0.4s;
+  position: absolute;
+  right: 0;
+  border-radius: 3px;
+  margin-top: 4px;
+  box-shadow:0 1px 5px 0 rgba(0, 0, 0, 0.16);
+  z-index: 99999;
+
+  &::-webkit-scrollbar
+  {
+    width: 3px;
+    background-color: #DADADA;
+    padding: 2px;
+  }
+
+  /*定义滚动条轨道 内阴影+圆角*/
+  &::-webkit-scrollbar-track
+  {
+    background-color: #bbb;
+  }
+
+  /*定义滑块 内阴影+圆角*/
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 2px;
+    background-color: #bbb;
+  }
+}
+
+.select-item-box-show {
+  max-height: 300px;
+}
+
+.select-item {
+  width: 100%;
+  height: 30px;
+  color: #141414;
+  background: #FFFFFF;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  overflow:hidden;/*超出长度的文字隐藏*/
+  text-overflow:ellipsis;/*文字隐藏以后添加省略号*/
+  white-space:nowrap;
+
+  &:hover {
+    background-color: #F6F6F6;
+    color: #4990e2;
+  }
+}
+
+.select-item-select {
+  background-color: #4990e2;
+  color: #fff;
+}

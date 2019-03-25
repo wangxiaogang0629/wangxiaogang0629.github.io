@@ -5,3 +5,21 @@
     transform: scale(1.5);
   }
 }
+
+.warning {
+  color: #fff;
+  background: #e25e49;
+  box-shadow: #e25e49 0 0 8px;
+}
+
+.medium {
+  color: #fff;
+  background: #4990e2;
+  box-shadow: #4990e2 0 0 8px;
+}
+
+.good {
+  color: #fff;
+  background: #2ec75d;
+  box-shadow: #2ec75d 0 0 8px;
+}
