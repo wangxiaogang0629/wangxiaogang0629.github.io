@@ -7,12 +7,16 @@ class DateSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSelectItemBoxShow: false
+      isSelectItemBoxShow: false,
+      arrow: 'arrow-down',
     };
   }
 
   _showSelectItemBox = () => {
-    this.setState({ isSelectItemBoxShow: !this.state.isSelectItemBoxShow });
+    this.setState({
+      isSelectItemBoxShow: !this.state.isSelectItemBoxShow,
+      arrow: this.state.arrow == 'arrow-down' ? 'arrow-up' : 'arrow-down'
+    });
   }
 
   _change = (value, text) => {
@@ -20,8 +24,10 @@ class DateSelect extends Component {
   }
 
   _selectBlur = () => {
-    console.log('_selectBlur')
-    this.setState({ isSelectItemBoxShow: false });
+    this.setState({
+      isSelectItemBoxShow: false,
+      arrow: 'arrow-down',
+    });
   }
 
   componentDidMount() {
@@ -31,6 +37,7 @@ class DateSelect extends Component {
   render() {
     const {
       containerStyle, // 容器最外层样式
+      innerTextStyle, // 容器文本样式
       selectValue,
       // data,
       children,
@@ -38,11 +45,10 @@ class DateSelect extends Component {
 
     let {
       isSelectItemBoxShow,
+      arrow
     } = this.state;
 
     let _children = children && children.map((item, i) => {
-
-      console.log(item, item.props.value)
 
       let value = item.props.value;
 			let text = item.props.children;
@@ -64,13 +70,19 @@ class DateSelect extends Component {
         { /* 选择框 */ }
         <div
           onClick = { () => { this._showSelectItemBox() } }
-          style = { {
+          style = { assign({}, {
             color: selectValue ? '#000' : '#bbbbbb'
-          } }
+          }, innerTextStyle) }
           tabIndex = '0'
           onBlur = { e => { this._selectBlur(e); } }
           className = 'select-box'>
           { selectValue ? selectValue : '请选择' }
+
+          {/* 右侧箭头 */}
+          <div className = 'arrow-box'>
+            <div className = { arrow } />
+          </div>
+
         </div>
 
         { /* 下拉内容 */ }

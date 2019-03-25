@@ -1,3 +1,43 @@
+/* 箭头图形 */
+@mixin arrow($deg) {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #464646;
+  font-size: 0;
+  line-height: 0;
+  margin-right: 10px;
+  transform: rotate($deg);
+  transition: transform 200ms linear;
+}
+
+
+/* select选框右侧箭头样式 */
+.arrow-box {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+.arrow {
+  margin-right: 15px;
+}
+/* 向上箭头 */
+.arrow-up {
+  @include arrow(180deg);
+}
+/* 向下箭头 */
+.arrow-down {
+  @include arrow(0deg);
+}
+/* 不可点击态箭头 */
+.arrow-down-gray {
+	border-top: 5px solid #DADADA;
+	margin-right: 10px;
+}
 
 .input {
   width: 120px;
@@ -22,7 +62,7 @@
   cursor: pointer;
   line-height: 30px;
   font-size: 12px;
-  padding-left: 5px;
+  padding-left: 10px;
   transition: all 0.3s;
 
   &:focus {
@@ -83,7 +123,7 @@
   text-align: center;
   line-height: 30px;
   letter-spacing: 2px;
-  font-size: 14px;
+  font-size: 12px;
   overflow:hidden;/*超出长度的文字隐藏*/
   text-overflow:ellipsis;/*文字隐藏以后添加省略号*/
   white-space:nowrap;

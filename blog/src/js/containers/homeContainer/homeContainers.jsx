@@ -27,15 +27,17 @@ class HomeContainer extends Component {
 
 
   render() {
-    console.log(new Date().getFullYear())
     return (
       <div style = { styles.container }>
 
         <div style = { styles.dateSelectStyle }>
           <DateSelect
+            // innerTextStyle = { {
+            //   padding: 0
+            // } }
             containerStyle = { {
               width: 120,
-              textAlign: 'center'
+              // textAlign: 'center',
             } }
             selectValue = { this.state.selectYear }
             change = { (value, text) => { this._changeDateYear(value, text) } }>
@@ -45,9 +47,12 @@ class HomeContainer extends Component {
           </DateSelect>
           <div style = { styles.dateUnit }>年</div>
           <DateSelect
+            // innerTextStyle = { {
+            //   padding: 0
+            // } }
             containerStyle = { {
               width: 60,
-              textAlign: 'center',
+              // textAlign: 'center',
             } }
             selectValue = { this.state.selectMonth }
             change = { (value, text) => { this._changeDateMonth(value, text) } }>
