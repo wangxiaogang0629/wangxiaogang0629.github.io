@@ -190,7 +190,7 @@ function getBlockChart(ele, eleChart, data, user) {
     xData.push(key);
     dataHe.push(data[key]['he']);
     dataShe.push(data[key]['she']);
-    total += (data[key]['he'] + data[key]['she']) / 2;
+    total += user == '木疙瘩瘩' ? data[key]['he'] : data[key]['she'];
   }
 
   ele.innerHTML = `${ user }得分(${ total })`;
