@@ -58,7 +58,7 @@ class Header extends Component {
     let _url = 'https://free-api.heweather.net/s6/weather/now?location=' +
       cityName + '&key=7fa515daad2842d9bcc001031f109fce';
 
-    that.setState({
+    this.setState({
       site: cityName,
     })
 
@@ -79,7 +79,6 @@ class Header extends Component {
 
 
   componentDidMount() {
-
 
     this._get();
   }
