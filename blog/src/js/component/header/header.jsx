@@ -19,41 +19,22 @@ class Header extends Component {
     };
   }
 
-  _get = () => {
-    // ecZSQ1IYyurBNhnPjtmM3Bus38NSSOfn
+  // 获取当前定位城市
+  _getCurrentCity = () => {
 
-    let that = this;
+  	let currentCity = new BMap.LocalCity();
 
-    var map = new BMap.Map("allmap");
-    var point = new BMap.Point(116.331398,39.897445);
-    map.centerAndZoom(point,12);
+  	currentCity.get((result) => {
+        let cityName = result.name;
+        alert("当前定位城市:"+cityName);
 
-    var geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(function(r){
-    	if(this.getStatus() == BMAP_STATUS_SUCCESS){
-    		var mk = new BMap.Marker(r.point);
-    		map.addOverlay(mk);
-    		map.panTo(r.point);
-    		alert('您的位置：'+r.point.lng+','+r.point.lat);
-    	}
-    	else {
-    		alert('failed'+this.getStatus());
-    	}
+        cityName = cityName == '全国' ? '北京' : cityName
+        this._getWeather(cityName);
     });
 
-
-    function myFun(result){
-		    var cityName = result.name;
-  		  map.setCenter(cityName);
-  		  alert("当前定位城市:"+cityName);
-
-        that._getWeather(cityName);
-  	}
-
-  	var myCity = new BMap.LocalCity();
-  	myCity.get(myFun);
   }
 
+  // 获取当前定位城市天气
   _getWeather = (cityName) => {
     let _url = 'https://free-api.heweather.net/s6/weather/now?location=' +
       cityName + '&key=7fa515daad2842d9bcc001031f109fce';
@@ -66,7 +47,6 @@ class Header extends Component {
       url: _url,
       type: 'GET',
       success: (res) => {
-        console.log(res)
         this.setState({
           weatherInfo: res
         })
@@ -77,30 +57,8 @@ class Header extends Component {
     });
   }
 
-  _showData (data) {
-    console.info("调用showData");
-    var result = JSON.stringify(data);
-    $("#text").val(result);
-  }
-
-
   componentDidMount() {
-
-    this._get();
-
-    $.ajax({
-      url: 'https://api.map.baidu.com/location/ip?ak=ecZSQ1IYyurBNhnPjtmM3Bus38NSSOfn',
-      type: 'GET',
-      dataType: "jsonp",
-      jsonpCallback: this._showData,
-      success: (res) => {
-        console.log(res)
-      },
-      fail: (err) => {
-        console.log('定位失败', err)
-      }
-
-    })
+    this._getCurrentCity();
   }
 
   render() {
