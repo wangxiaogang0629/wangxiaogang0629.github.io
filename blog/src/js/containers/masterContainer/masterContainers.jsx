@@ -15,13 +15,13 @@ class MasterContainer extends Component {
       children,
     } = this.props;
 
-    // console.log(this.props,children)
-
     return (
       <div className = 'master'>
         <div className = 'header-and-children'>
           <Header />
-          { children }
+          <div className = 'children'>
+            { children }
+          </div>
         </div>
         <Footer />
       </div>

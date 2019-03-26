@@ -67,14 +67,17 @@ class Header extends Component {
 
     return (
       <div className = "header">
-        <div>LOGO</div>
+        <div className = 'header-inner'>
+          <div>LOGO</div>
 
-        <div className = 'weather'>
-          <div className = 'site'>位置：{ this.state.site }</div>
-          <div className = 'tmp'>
-            当前温度：{ this.state.weatherInfo.HeWeather6[0].now.tmp } ℃
+          <div className = 'weather'>
+            <div className = 'site'>位置：{ this.state.site }</div>
+            <div className = 'tmp'>
+              当前温度：{ this.state.weatherInfo.HeWeather6[0].now.tmp } ℃
+            </div>
           </div>
         </div>
+
       </div>
     );
   }

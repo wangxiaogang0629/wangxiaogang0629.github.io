@@ -9,4 +9,9 @@
   .header-and-children {
     flex: 1
   }
+
+  .children {
+    display: flex;
+    justify-content: center;
+  }
 }
