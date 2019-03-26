@@ -5,6 +5,9 @@ import DateSelect from '../../component/dateSelect';
 import Banner from '../../component/banner';
 import './index.scss';
 
+
+const imageUrl = '/blog/public/images/';
+
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +40,7 @@ class HomeContainer extends Component {
             {
               id: 0,
               url: '../../../../public/images/banner-1.jpg',
+              // `${ imageUrl }banner-1.jpg`,
             },
             {
               id: 1,
