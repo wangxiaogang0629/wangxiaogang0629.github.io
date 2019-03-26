@@ -77,10 +77,30 @@ class Header extends Component {
     });
   }
 
+  _showData (data) {
+    console.info("调用showData");
+    var result = JSON.stringify(data);
+    $("#text").val(result);
+  }
+
 
   componentDidMount() {
 
     this._get();
+
+    $.ajax({
+      url: 'https://api.map.baidu.com/location/ip?ak=ecZSQ1IYyurBNhnPjtmM3Bus38NSSOfn',
+      type: 'GET',
+      dataType: "jsonp",
+      jsonpCallback: this._showData,
+      success: (res) => {
+        console.log(res)
+      },
+      fail: (err) => {
+        console.log('定位失败', err)
+      }
+
+    })
   }
 
   render() {

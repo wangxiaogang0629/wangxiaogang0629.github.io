@@ -24,6 +24,7 @@ let heData = {
     22: { he: 0, she: 0 },
     23: { he: 0, she: 5 },
     24: { he: 0, she: 0 },
+    24: { he: 5, she: 5 },
   },
 };
 
@@ -53,5 +54,6 @@ let sheData = {
     22: { he: 0, she: 0 },
     23: { he: 5, she: 5 },
     24: { he: 0, she: 0 },
+    25: { he: 5, she: 5 },
   },
 }
