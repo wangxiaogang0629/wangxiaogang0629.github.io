@@ -28,6 +28,9 @@ let heData = {
     26: { he: 5, she: 5 },
     27: { he: 5, she: 5 },
     28: { he: 0, she: 0 },
+    29: { he: 0, she: 0 },
+    30: { he: 0, she: 0 },
+    31: { he: 0, she: 0 },
   },
 };
 
@@ -61,5 +64,8 @@ let sheData = {
     26: { he: 5, she: 5 },
     27: { he: 5, she: 5 },
     28: { he: 5, she: 5 },
+    29: { he: 5, she: 5 },
+    30: { he: 0, she: 0 },
+    31: { he: 0, she: 0 },
   },
 }
