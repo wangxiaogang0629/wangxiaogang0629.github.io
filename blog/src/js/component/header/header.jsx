@@ -58,7 +58,7 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    this._getCurrentCity();
+    // this._getCurrentCity();
   }
 
   render() {

@@ -10,6 +10,15 @@ class MasterContainer extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.children.style.minHeight = window.innerHeight - 100 + 'px';
+
+		window.onresize = () => {
+
+			this.children.style.minHeight = window.innerHeight - 100 + 'px';
+		}
+  }
+
   render() {
     const {
       children,
@@ -17,11 +26,9 @@ class MasterContainer extends Component {
 
     return (
       <div className = 'master'>
-        <div className = 'header-and-children'>
-          <Header />
-          <div className = 'children'>
-            { children }
-          </div>
+        <Header />
+        <div className = 'children' ref = { (e) => { this.children = e } }>
+          { children }
         </div>
         <Footer />
       </div>

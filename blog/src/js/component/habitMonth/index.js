@@ -18,6 +18,7 @@ class HabitMonth extends Component {
       title,
       selectMonth,
       selectYear,
+      dayItemStyle,
       // data,
     } = this.props;
 
@@ -114,10 +115,7 @@ class HabitMonth extends Component {
                                 : 'day-item'
                             )
                         )
-                    }
-                    style = { assign({}, styles.dayItem, {
-                      marginRight: (i + 1) % 7 == 0 ? '0' : '28px',
-                    }) }>
+                    }>
                     { v }
                   </div>
                 );
@@ -172,15 +170,6 @@ const styles = {
     fontSize: '14px',
     padding: '0px 24px',
   },
-  dayItem: {
-    height: 26,
-    width: 26,
-    lineHeight: '26px',
-    textAlign: 'center',
-    // border: '1px solid #ddd',
-    borderRadius: '50%',
-    marginBottom: '10px'
-  }
 };
 
 export default HabitMonth;
