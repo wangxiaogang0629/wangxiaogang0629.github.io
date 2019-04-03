@@ -4,6 +4,7 @@ import '../../../sass/base/base.scss';
 import Header from '../../component/header/header.jsx';
 import Footer from '../../component/footer/footer.jsx';
 import './index.scss';
+import IconSvg from '../../component/iconSvg';
 
 class MasterContainer extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class MasterContainer extends Component {
 
     return (
       <div className = 'master'>
+        <IconSvg />
         <Header />
         <div className = 'children' ref = { (e) => { this.children = e } }>
           { children }

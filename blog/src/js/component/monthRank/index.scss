@@ -1,0 +1,25 @@
+.echartblock, .echartLine {
+  .container {
+    width: 100%;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.username {
+  font-size: 16px;
+  height: 14px;
+  line-height: 14px;
+  margin-bottom: 20px;
+  color: #800080;
+  border-left: 3px solid #800080;
+  padding-left: 6px;
+
+  .score {
+    color: #000;
+  }
+}

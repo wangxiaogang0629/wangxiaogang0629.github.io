@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import './header.scss';
+import { hashHistory } from 'react-router';
 
 import $ from 'jquery';
 
@@ -68,13 +69,14 @@ class Header extends Component {
     return (
       <div className = "header">
         <div className = 'header-inner'>
-          <div>LOGO</div>
+          <div
+            className = 'habit'
+            onClick = { () => { hashHistory.push('/index') } } >LOGO</div>
 
-          <div className = 'weather'>
-            <div className = 'site'>位置：{ this.state.site }</div>
-            <div className = 'tmp'>
-              当前温度：{ this.state.weatherInfo.HeWeather6[0].now.tmp } ℃
-            </div>
+          <div
+            className = 'habit'
+            onClick = { () => { hashHistory.push('/me') } }>
+            me
           </div>
         </div>
 

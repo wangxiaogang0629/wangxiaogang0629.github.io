@@ -11,8 +11,8 @@
     align-items: center;
     justify-content: space-between;
     height: 50px;
-    width: 1200px;
-    min-width: 1200px;
+    width: 980px;
+    min-width: 980px;
   }
 
   div {
@@ -20,15 +20,16 @@
     align-items: center;
   }
 
-  .weather {
+  .habit {
 
-    .site {
-      margin-right: 40px;
-      color: #4990e2;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #800080;
     }
 
-    .tmp {
-      color: #2ec75d;
-    }
   }
+
 }
