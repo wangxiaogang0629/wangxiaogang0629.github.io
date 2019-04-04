@@ -36,6 +36,7 @@ let heData = {
     4: [
       { time: 1, he: 5, she: 5 },
       { time: 2, he: 5, she: 5 },
+      { time: 3, he: 5, she: 5 },
     ],
   }
 };
@@ -78,6 +79,7 @@ let sheData = {
     4: [
       { time: 1, he: 5, she: 5 },
       { time: 2, he: 5, she: 5 },
+      { time: 3, he: 5, she: 5 },
     ],
   }
 }
