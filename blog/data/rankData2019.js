@@ -48,6 +48,8 @@ let heData = {
       { time: 12, he: 0, she: 0 },
       { time: 13, he: 0, she: 0 },
       { time: 14, he: 0, she: 0 },
+      { time: 15, he: 0, she: 0 },
+      { time: 16, he: 10, she: 10 },
     ],
   }
 };
@@ -102,6 +104,8 @@ let sheData = {
       { time: 12, he: 0, she: 0 },
       { time: 13, he: 5, she: 5 },
       { time: 14, he: 0, she: 0 },
+      { time: 15, he: 10, she: 10 },
+      { time: 16, he: 10, she: 10 },
     ],
   }
 }

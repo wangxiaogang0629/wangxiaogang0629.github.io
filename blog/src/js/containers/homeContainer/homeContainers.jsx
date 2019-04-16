@@ -141,15 +141,24 @@ class HomeContainer extends Component {
             </div>
 
             <div className = 'localInfo'>
-              <div>City：{ '北京' } </div>
-              <div>Temperature：{ '20℃' } </div>
-              <div>Time：{ [
-                new Date().getFullYear(),
-                new Date().getMonth(),
-                new Date().getDate(),
-                new Date().getHours(),
-                new Date().getMinutes()
-              ].join('-') } </div>
+              <div>City: { '北京' } </div>
+              <div>Temperature: { '20℃' } </div>
+              <div>
+                Time: { [
+                          new Date().getFullYear(),
+                          new Date().getMonth() + 1,
+                          new Date().getDate(),
+                        ].join('-')
+                      }
+                      &nbsp;
+                      {
+                        [
+                          new Date().getHours(),
+                          new Date().getMinutes(),
+                        ].join(':')
+                        
+                      }
+              </div>
             </div>
 
             <div className = "go-far">
