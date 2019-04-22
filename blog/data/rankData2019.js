@@ -51,7 +51,10 @@ let heData = {
       { time: 15, he: 0, she: 0 },
       { time: 16, he: 5, she: 5 },
       { time: 17, he: 10, she: 10 },
-    ],
+      { time: 18, he: 0, she: 0 },
+      { time: 19, he: 0, she: 0 },
+      { time: 20, he: 0, she: 0 },
+      { time: 21, he: 0, she: 0 },
   }
 };
 
@@ -108,6 +111,9 @@ let sheData = {
       { time: 15, he: 10, she: 10 },
       { time: 16, he: 0, she: 0 },
       { time: 17, he: 10, she: 10 },
+      { time: 19, he: 0, she: 0 },
+      { time: 20, he: 0, she: 0 },
+      { time: 21, he: 0, she: 0 },
     ],
   }
 }
