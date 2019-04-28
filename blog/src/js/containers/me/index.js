@@ -5,7 +5,10 @@ import { hashHistory } from 'react-router';
 import RankBlock from '../../component/monthRank';
 import RankLine from '../../component/monthRank/rankLine';
 import DateSelect from '../../component/dateSelect';
+import Nav from '../../component/nav';
 import Data from '../../../../data/rankData2019';
+import { habitData } from '../../../../data/habitData2019';
+
 import assign from 'lodash.assign';
 
 import $ from 'jquery';
@@ -15,12 +18,16 @@ class Me extends Component {
     super(props);
     this.state = {
       selectYear: 2019,
-      selectMonth: 4
+      selectMonth: 4,
+      selectNavId: 0,
+      pageState: 0,
     };
   }
 
   componentDidMount() {
     // this._getCurrentCity();
+    console.log('HabitData',habitData)
+
   }
 
   _changeDateMonth = (value, text) => {
@@ -35,13 +42,21 @@ class Me extends Component {
     })
   }
 
+  _navClick = (id) => {
+    this.setState({
+      selectNavId: id
+    });
+  }
+
   render() {
     let {
     } = this.props;
 
     let {
       selectYear,
-      selectMonth
+      selectMonth,
+      selectNavId,
+      pageState
     } = this.state;
 
 
@@ -73,46 +88,71 @@ class Me extends Component {
     return (
       <div className = "me">
 
-        <div className = 'rankTitle'>
-          { selectYear } 年 { selectMonth } 月 考核分数统计
-        </div>
-
-        <div style = { styles.dateSelectStyle }>
-          <DateSelect
-            containerStyle = { { width: 120 } }
-            selectValue = { selectYear }
-            change = {
-              (value, text) => { this._changeDateYear(value, text) } }>
-            <div value = { 2018 }>2018</div>
-            <div value = { 2019 }>2019</div>
-            <div value = { 2020 }>2020</div>
-          </DateSelect>
-          <div style = { styles.dateUnit }>年</div>
-          <DateSelect
-            containerStyle = { { width: 60 } }
-            selectValue = { selectMonth }
-            change = {
-              (value, text) => { this._changeDateMonth(value, text) } }>
-            <div value = {1}>1</div>
-            <div value = {2}>2</div>
-            <div value = {3}>3</div>
-            <div value = {4}>4</div>
-            <div value = {5}>5</div>
-            <div value = {6}>6</div>
-            <div value = {7}>7</div>
-            <div value = {8}>8</div>
-            <div value = {9}>9</div>
-            <div value = {10}>10</div>
-            <div value = {11}>11</div>
-            <div value = {12}>12</div>
-          </DateSelect>
-          <div style = { assign({}, styles.dateUnit, {
-            marginRight: 0
-          }) }>月</div>
-        </div>
+        <Nav
+          navClick = { this._navClick }
+          selectNavId = { selectNavId }
+          navContainerStyle = { {
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '60px',
+            padding: '5px 10px',
+            background: '#eee',
+          } }
+          navList = {
+            [
+              { id : 0, navName: 'PK' },
+              { id : 1, navName: 'myHabit' },
+            ]
+          } />
 
         {
-          _heData
+          selectNavId == 0
+            ? <div className = 'rankTitle'>
+                { selectYear } 年 { selectMonth } 月 考核分数统计
+              </div>
+            : null
+        }
+
+        {
+          selectNavId == 0
+            ? <div style = { styles.dateSelectStyle }>
+                <DateSelect
+                  containerStyle = { { width: 120 } }
+                  selectValue = { selectYear }
+                  change = {
+                    (value, text) => { this._changeDateYear(value, text) } }>
+                  <div value = { 2018 }>2018</div>
+                  <div value = { 2019 }>2019</div>
+                  <div value = { 2020 }>2020</div>
+                </DateSelect>
+                <div style = { styles.dateUnit }>年</div>
+                <DateSelect
+                  containerStyle = { { width: 60 } }
+                  selectValue = { selectMonth }
+                  change = {
+                    (value, text) => { this._changeDateMonth(value, text) } }>
+                  <div value = {1}>1</div>
+                  <div value = {2}>2</div>
+                  <div value = {3}>3</div>
+                  <div value = {4}>4</div>
+                  <div value = {5}>5</div>
+                  <div value = {6}>6</div>
+                  <div value = {7}>7</div>
+                  <div value = {8}>8</div>
+                  <div value = {9}>9</div>
+                  <div value = {10}>10</div>
+                  <div value = {11}>11</div>
+                  <div value = {12}>12</div>
+                </DateSelect>
+                <div style = { assign({}, styles.dateUnit, {
+                  marginRight: 0
+                }) }>月</div>
+              </div>
+            : null
+        }
+
+        {
+          _heData && selectNavId == 0
             ? <div>
                 <RankBlock
                   username = '刀刀狗'
@@ -131,7 +171,7 @@ class Me extends Component {
                   data = { _rankBlockDataShe } />
 
                 <RankLine
-                  username = '刀刀狗'
+                  username = '刀刀狗平均得分: &nbsp;'
                   canvasId = 'rankLine1'
                   usernameStyle = { { margin: 0 } }
                   canvasStyle = { {
@@ -139,14 +179,56 @@ class Me extends Component {
                   data = { _rankLineDataHe } />
 
                 <RankLine
-                  username = '桃小姐'
+                  username = '桃小姐平均得分: &nbsp;'
                   canvasId = 'rankLine2'
                   usernameStyle = { { margin: 0 } }
                   canvasStyle = { {
                     width: '100%', height: 300, marginBottom: '50px' } }
                   data = { _rankLineDataShe } />
               </div>
-            : <div style = { {
+            : null
+        }
+
+
+        {
+          selectNavId == 1
+            ? <RankLine
+                username = 'Read-Time(小时): &nbsp;'
+                canvasId = 'read'
+                usernameStyle = { { margin: 0 } }
+                canvasStyle = { {
+                  width: '100%', height: 300, marginBottom: '50px' } }
+                data = { _rankLineDataHe } />
+            : null
+        }
+
+        {
+          selectNavId == 1
+            ? <RankLine
+                username = 'Fitness-Time(小时): &nbsp;'
+                canvasId = 'fitness'
+                usernameStyle = { { margin: 0 } }
+                canvasStyle = { {
+                  width: '100%', height: 300, marginBottom: '50px' } }
+                data = { _rankLineDataHe } />
+            : null
+        }
+
+        {
+          selectNavId == 1
+            ? <RankLine
+                username = 'Photography-Time(小时): &nbsp;'
+                canvasId = 'photography'
+                usernameStyle = { { margin: 0 } }
+                canvasStyle = { {
+                  width: '100%', height: 300, marginBottom: '50px' } }
+                data = { _rankLineDataHe } />
+            : null
+        }
+
+        {
+          selectNavId == 0 && !_heData
+            ? <div style = { {
                 display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
@@ -167,6 +249,7 @@ class Me extends Component {
                   color: 'rgba(216, 213, 214, 1)'
                 } }>暂无数据</div>
               </div>
+            : null
         }
 
       </div>

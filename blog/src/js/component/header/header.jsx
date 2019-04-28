@@ -64,6 +64,7 @@ class Header extends Component {
 
   render() {
     const {
+      location,
     } = this.props;
 
     return (
@@ -71,11 +72,19 @@ class Header extends Component {
         <div className = 'header-inner'>
           <div
             className = 'habit'
-            onClick = { () => { hashHistory.push('/index') } } >LOGO</div>
+            onClick = {
+              () => {
+                if (location.pathname == '/index') return;
+                hashHistory.push('/index')
+              }
+            }>LOGO</div>
 
           <div
             className = 'habit'
-            onClick = { () => { hashHistory.push('/me') } }>
+            onClick = { () => {
+              if (location.pathname == '/me') return;
+              hashHistory.push('/me')
+            } }>
             me
           </div>
         </div>

@@ -23,12 +23,13 @@ class MasterContainer extends Component {
   render() {
     const {
       children,
+      location
     } = this.props;
 
     return (
       <div className = 'master'>
         <IconSvg />
-        <Header />
+        <Header location = { location } />
         <div className = 'children' ref = { (e) => { this.children = e } }>
           { children }
         </div>

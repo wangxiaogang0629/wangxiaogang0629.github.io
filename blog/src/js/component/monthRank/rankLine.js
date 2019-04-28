@@ -213,7 +213,7 @@ class RankLine extends Component {
     return (
       <div className = "echartLine">
         <div className = 'username' style = { usernameStyle }>
-          { username }平均得分: &nbsp;
+          { username }
           <span className = 'score'>{ this.state.total }</span>
         </div>
         <div className = "container">
