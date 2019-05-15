@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import HabitMonth from '../../component/habitMonth';
 import DateSelect from '../../component/dateSelect';
 import Banner from '../../component/banner';
 import './index.scss';
-import ReactCrop from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
 import $ from 'jquery';
 
+import * as actions from '../../actions';
+
 const imageUrl = '/blog/public/images/';
+
+const mapStateToProps = state => {
+  return {
+    // ceshi: state.me.ceshi
+  }
+}
 
 class HomeContainer extends Component {
   constructor(props) {
@@ -156,7 +164,7 @@ class HomeContainer extends Component {
                           new Date().getHours(),
                           new Date().getMinutes(),
                         ].join(':')
-                        
+
                       }
               </div>
             </div>
@@ -262,4 +270,13 @@ const styles = {
   }
 }
 
-export default HomeContainer;
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeContainer);

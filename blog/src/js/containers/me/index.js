@@ -2,16 +2,26 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import './index.scss';
 import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import RankBlock from '../../component/monthRank';
 import RankLine from '../../component/monthRank/rankLine';
 import DateSelect from '../../component/dateSelect';
 import Nav from '../../component/nav';
 import Data from '../../../../data/rankData2019';
 import { habitData } from '../../../../data/habitData2019';
+import * as actions from '../../actions/me';
 
 import assign from 'lodash.assign';
 
 import $ from 'jquery';
+
+const mapStateToProps = state => {
+  return {
+    ceshi: state.me.ceshi
+  }
+}
 
 class Me extends Component {
   constructor(props) {
@@ -26,7 +36,9 @@ class Me extends Component {
 
   componentDidMount() {
     // this._getCurrentCity();
-    console.log('HabitData',habitData)
+    console.log('HabitData',habitData, this.props.actions)
+
+    this.props.actions.ceshi()
 
   }
 
@@ -271,6 +283,13 @@ const styles = {
   }
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  }
+}
 
-
-export default Me;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Me);
