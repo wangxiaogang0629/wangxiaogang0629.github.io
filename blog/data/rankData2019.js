@@ -65,6 +65,23 @@ let heData = {
       { time: 29, he: 0, she: 0 },
       { time: 30, he: 0, she: 0 },
     ],
+    5:[
+      { time: 1, he: 0, she: 0 },
+      { time: 2, he: 0, she: 0 },
+      { time: 3, he: 0, she: 0 },
+      { time: 4, he: 0, she: 0 },
+      { time: 5, he: 0, she: 0 },
+      { time: 6, he: 0, she: 0 },
+      { time: 7, he: 0, she: 0 },
+      { time: 8, he: 0, she: 0 },
+      { time: 9, he: 0, she: 0 },
+      { time: 10, he: 0, she: 0 },
+      { time: 11, he: 0, she: 0 },
+      { time: 12, he: 0, she: 0 },
+      { time: 13, he: 0, she: 0 },
+      { time: 14, he: 0, she: 0 },
+      { time: 15, he: 0, she: 0 },
+    ],
   }
 };
 
@@ -134,6 +151,23 @@ let sheData = {
       { time: 28, he: 10, she: 10 },
       { time: 29, he: 0, she: 0 },
       { time: 30, he: 10, she: 10 },
+    ],
+    5:[
+      { time: 1, he: 0, she: 0 },
+      { time: 2, he: 0, she: 0 },
+      { time: 3, he: 0, she: 0 },
+      { time: 4, he: 0, she: 0 },
+      { time: 5, he: 0, she: 0 },
+      { time: 6, he: 0, she: 0 },
+      { time: 7, he: 0, she: 0 },
+      { time: 8, he: 0, she: 0 },
+      { time: 9, he: 0, she: 0 },
+      { time: 10, he: 0, she: 0 },
+      { time: 11, he: 0, she: 0 },
+      { time: 12, he: 0, she: 0 },
+      { time: 13, he: 0, she: 0 },
+      { time: 14, he: 0, she: 0 },
+      { time: 15, he: 0, she: 0 },
     ],
   }
 }
