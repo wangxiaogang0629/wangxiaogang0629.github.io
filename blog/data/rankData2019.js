@@ -80,7 +80,7 @@ let heData = {
       { time: 12, he: 0, she: 0 },
       { time: 13, he: 0, she: 0 },
       { time: 14, he: 0, she: 0 },
-      { time: 15, he: 0, she: 0 },
+      { time: 15, he: 5, she: 5 },
     ],
   }
 };
@@ -167,7 +167,7 @@ let sheData = {
       { time: 12, he: 0, she: 0 },
       { time: 13, he: 0, she: 0 },
       { time: 14, he: 0, she: 0 },
-      { time: 15, he: 0, she: 0 },
+      { time: 15, he: 5, she: 5 },
     ],
   }
 }
