@@ -27,8 +27,8 @@ class Me extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectYear: 2019,
-      selectMonth: 4,
+      selectYear: new Date().getFullYear(),
+      selectMonth: new Date().getMonth() + 1,
       selectNavId: 0,
       pageState: 0,
     };

@@ -93,6 +93,9 @@ let heData = {
       { time: 25, he: 0, she: 0 },
       { time: 26, he: 0, she: 0 },
       { time: 27, he: 5, she: 5 },
+      { time: 28, he: 5, she: 5 },
+      { time: 29, he: 5, she: 5 },
+      { time: 30, he: 5, she: 5 },
     ],
   }
 };
