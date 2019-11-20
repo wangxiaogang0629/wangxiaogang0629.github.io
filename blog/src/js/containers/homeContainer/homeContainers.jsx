@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import HabitMonth from '../../component/habitMonth';
 import DateSelect from '../../component/dateSelect';
 import Banner from '../../component/banner';
+import SortTableList from '../../component/sortTable';
 import './index.scss';
 import $ from 'jquery';
 
@@ -64,6 +65,8 @@ class HomeContainer extends Component {
       selectMonth,
       selectValue,
     } = this.state;
+
+    console.log('SortTableList',SortTableList)
     return (
       <div className = 'container'>
 
@@ -253,6 +256,8 @@ class HomeContainer extends Component {
           </div>
 
         </div>
+
+        <SortTableList />
 
       </div>
     );
