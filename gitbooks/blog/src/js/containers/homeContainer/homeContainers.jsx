@@ -137,7 +137,7 @@ class HomeContainer extends Component {
 
             <div className = 'content-left-title' >最新上传</div>
 
-            <div className = 'article-block' >暂未内容......</div>
+            <div className = 'article-block' >国家主席习近平25日在巴黎爱丽舍宫同法国总统马克龙会谈。两国元首一致同意，承前启后，继往开来，在新的历史起点上打造更加坚实、稳固、富有活力的中法全面战略伙伴关系。</div>
 
           </div>
 
@@ -145,10 +145,10 @@ class HomeContainer extends Component {
 
             <div className = 'menu'>
               <div className = 'menu-item' >最新发布</div>
-              {/* <div className = 'menu-item' >技术分享</div>
+              <div className = 'menu-item' >技术分享</div>
               <div className = 'menu-item' >随笔</div>
               <div className = 'menu-item' >诗词杂谈</div>
-              <div className = 'menu-item' >音乐分享</div> */}
+              <div className = 'menu-item' >音乐分享</div>
             </div>
 
             <div className = 'localInfo'>
@@ -257,7 +257,7 @@ class HomeContainer extends Component {
 
         </div>
 
-        {/* <SortTableList /> */}
+        <SortTableList />
 
       </div>
     );

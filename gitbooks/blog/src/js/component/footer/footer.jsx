@@ -14,7 +14,7 @@ class Footer extends Component {
 
     return (
       <div className = 'footer'>
-         Design By 汪小岗 2020 京ICP备19055582号
+         Design By 汪小岗 2018-2019
       </div>
     );
   }

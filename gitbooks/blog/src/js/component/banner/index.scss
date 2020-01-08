@@ -1,0 +1,90 @@
+
+@media screen and (max-width: 980px) {
+  .banner {
+    min-height: 180px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .banner {
+    min-height: 200px;
+  }
+}
+
+.banner {
+  width: 100%;
+  min-height: 400px;
+  position: relative;
+
+  .bannerDefault {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+  }
+
+  .banner-img-box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .banner-img-item {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.8s;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+  }
+
+  .banner-img-item-current {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  // banner上的点
+  .point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 99999;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+  }
+
+  .point-inner {
+    display: flex;
+    justify-content: center;
+  }
+
+  .point-item {
+    height: 3px;
+    width: 15px;
+    margin-right: 8px;
+    background-color: #ddd;
+    transition: all 0.8s;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  .point-item-current {
+    width: 22px;
+    background-color: #4990e2;
+  }
+
+
+}
