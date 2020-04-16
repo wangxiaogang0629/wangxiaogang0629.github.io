@@ -3,6 +3,7 @@
  * 创建虚拟DOM元素
  */
 function createVDOM(tagName, props, children) {
+	console.log('创建虚拟dom元素测试')
 
 	let ele = {};
 
