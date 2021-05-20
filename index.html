@@ -1,22 +1,398 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>wxg-blog</title>
-    <style>
-      #app {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 16px;
-      }
-    </style>
-  </head>
+<!DOCTYPE HTML>
+<html>
+
+
+<head>
+<meta charset="utf-8">
+<title>使用CSS3绘制转盘图抽奖功能</title>
+<style type="text/css">
+/*转盘*/
+#zhuan {
+/* width: 350px; */
+/* height: 350px; */
+margin: 50px auto;
+border: solid 10px #EB826B;
+border-radius:50%;
+/* overflow: hidden; */
+position: relative;
+transition: all 5s ease-in-out;
+}
+
+/*正三角性加圆角变成圆弧*/
+.trh {
+width: 0;
+height: 0;
+/* border-bottom: 173.3px solid #FEF1CB; */
+border-left: 100px solid transparent;
+border-right: 100px solid transparent;
+border-radius:0 0 100px 100px;
+position: absolute;
+top: 175px;
+left: 75px;
+}
+/* 1:2:4:6 */
+
+.rule-1 {
+  border-bottom: 173.3px solid #753F8B;
+}
+
+.rule-4 {
+  border-bottom: 173.3px solid #FBC1C4;
+}
+
+.rule-6 {
+  border-bottom: 173.3px solid #F5B50B;
+}
+
+/* trh的父元素的1个子元素 ，旋转60度角度*/
+.rule-0 {
+  transform-origin: 50% 0;
+  border-bottom: 173.3px solid #3EC190;
+  transform: rotate(100deg);
+}
+/* trh的父元素的2个子元素 */
+.trh:nth-child(2) {
+  transform-origin: 50% 0;
+  transform: rotate(120deg);
+}
+/* border-bottom: 173.3px solid #FEE9A7; */
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(2) {
+  transform-origin: 50% 0;
+  transform: rotate(140deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(3) {
+  transform-origin: 50% 0;
+  transform: rotate(160deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(4) {
+  transform-origin: 50% 0;
+  transform: rotate(180deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(5) {
+  transform-origin: 50% 0;
+  transform: rotate(200deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(6) {
+  transform-origin: 50% 0;
+  transform: rotate(220deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(7) {
+  transform-origin: 50% 0;
+  transform: rotate(240deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(8) {
+  transform-origin: 50% 0;
+  transform: rotate(260deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(9) {
+  transform-origin: 50% 0;
+  transform: rotate(280deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(10) {
+  transform-origin: 50% 0;
+  transform: rotate(300deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(11) {
+  transform-origin: 50% 0;
+  transform: rotate(320deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(12) {
+  transform-origin: 50% 0;
+  transform: rotate(340deg);
+}
+
+/* trh的父元素的2个子元素 */
+.trh:nth-child(13) {
+  transform-origin: 50% 0;
+  transform: rotate(360deg);
+}
+
+/*转盘指针的圆形*/
+#pointer{
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background-color: #7349e2;
+position: absolute;
+top: calc(50% - 25px);
+left: calc(50% - 25px);
+cursor: pointer;
+z-index: 1;
+opacity: 0.9;
+}
+/* 7349e2 */
+/*转盘指针的尖角*/
+#pointer:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 42.3px solid #7349e2;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  position: absolute;
+  top: -24px;
+  left: 0px;
+  opacity: 0.9;
+  transform: rotate(180deg);
+}
+body, html {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#box {
+  position: relative;
+}
+
+.inner {
+  position: absolute;
+  top: 50px;
+  left: calc(50% - 6px);
+}
+
+canvas {
+  transform: rotate(-90deg);
+}
+
+.res-box {
+  transition: all 0.3s;
+  opacity: 0;
+  position: absolute;
+  z-index: -11;
+  /* left: calc(50% - 375px); */
+  top: calc(50% - 187px);
+  padding-left: 160px;
+  align-items: center;
+  width: 80%;
+  height: 274px;
+  text-align: center;
+  line-height: 274px;
+  box-shadow: 1px 1px 111px 22222px rgba(0, 0, 0, 0.6);
+  background-position: center;
+  background-size: contain;
+  background-image: url('https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1973131764,1448170020&fm=15&gp=0.jpg');
+}
+
+.res-inner {
+  width: 200px;
+  white-space: pre;
+  font-size: 14px;
+  color: #333;
+}
+
+.res-btn {
+  width: 120px;
+  height: 40px;
+  font-weight: bold;
+  background-color: #4990e2;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 60px);
+}
+
+.show {
+  z-index: 111;
+  opacity: 1;
+}
+
+</style>
+</head>
 <body>
- <div id="app">
-   <div>个人博客搭建中...</div>
- </div>
+  <div id='box'>
+    <div id="zhuan">
+      <canvas class="canvas" width="500" height="500"></canvas>
+    </div>
+    <div id="pointer"></div>
+  </div>
+  <script>
+    function next () {
+      const resModalBox = document.querySelector(".res-box")
+      resModalBox.className = 'res-box'
+      const zhuan = document.getElementById("zhuan")
+      zhuan.style.transition = 'all 0s'
+      zhuan.style.transform = 'rotate(' + 0 + 'deg)';
+      setTimeout(() => {
+        zhuan.style.transition = 'all 5s ease-in-out'
+      }, 300)
+    }
+  </script>
+  <div class="res-box">
+    <div class="res-inner"></div>
+    <div class="res-btn" onclick="next()">再试一次</div>
+  </div>
+  <script>
+    var color = ['#F08304', '#F5B7D6', '#FFF103', '#309C4C', '#E71612']
+// 01234
+    const data = [
+      { name: '学习代金券6666', color: 3, deg: 1 },
+      { name: '匡威经典帆布鞋', color: 2, deg: 1 },
+      { name: '奈雪200', color: 1, deg: 1 },
+      { name: '学习代金券6666', color: 3, deg: 1 },
+      { name: 'AJ/空军一号运动鞋', color: 4, deg: 1, start: 72, end: 90 },
+      { name: '苹果手表', color: 0, deg: 1, start: 90, end: 108 },
+      { name: '奈雪200', color: 1, deg: 1, start: 108, end: 124 },
+      { name: '学习代金券6666', color: 3, deg: 1, start: 124, end: 142 },
+      { name: '红包520', color: 2, deg: 1, start: 142, end: 160 },
+      { name: '奈雪200', color: 1, deg: 1, start: 160, end: 178 },
+      { name: '学习代金券6666', color: 3, deg: 1, start: 178, end: 196 },
+      { name: '匡威经典帆布鞋', color: 2, deg: 1, start: 196, end: 214 },
+      { name: '奈雪200', color: 1, deg: 1, start: 214, end: 232 },
+      { name: '学习代金券6666', color: 3, deg: 1, start: 232, end: 260 },
+      { name: '金饰项链1314', color: 4, deg: 1, start: 260, end: 278 },
+      { name: '学习代金券6666', color: 3, deg: 1, start: 278, end: 296 },
+      { name: '奈雪200', color: 1, deg: 1, start: 296, end: 314 },
+      { name: '学习代金券6666', color: 3, deg: 1, start: 314, end: 332 },
+      { name: '红包520', color: 2, deg: 1, start: 332, end: 360 },
+      { name: '奈雪200', color: 1, deg: 1, start: 0, end: 20 },
+    ].map((v, i) => {
+      v.start = 360 - 18 * (i + 1)
+      v.end = 360 - 18 * i
+      return v
+    })
+
+    console.log('----', data)
+    var myCanvas = document.querySelector('canvas');
+    var ctx = myCanvas.getContext('2d');
+
+    var w = ctx.canvas.width;
+    var h = ctx.canvas.height;
+
+    /*分成几等分*/
+    var num = 20;
+    /*一份多少弧度*/
+    var angle = Math.PI * 2 / num;
+
+    /*原点坐标*/
+    var x0 = w / 2;
+    var y0 = h / 2;
+
+    /*获取随机颜色*/
+    var getRandomColor = function () {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+
+    /*上一次绘制的结束弧度等于当前次的起始弧度*/
+    //var startAngle = 0;
+    let startNum = 0
+    data.forEach((v, i) => {
+      var startAngle = startNum * angle;
+      var endAngle = (startNum + 1) * angle * v.deg;
+      startNum += v.deg;
+      ctx.beginPath();
+      ctx.moveTo(x0, y0);
+
+      console.log('startAngle', startAngle, endAngle, v.deg)
+      ctx.arc(x0, y0, 160, startAngle, endAngle);
+      /*随机颜色*/
+      ctx.fillStyle = color[v.color];
+      ctx.fill();
+      ctx.closePath();
+    })
+
+    var TEXT_FILL_STYLE="rgba(100,130,240,0.5)"
+    var TEXT_STROKE_STYLE="rgba(200,0,0,0.7)"
+    var TEXT_SIZE=64;
+    circle={
+        x:w/2,
+        y:h/2,
+        radius: 190
+    }
+    function drawCircularText(string,startAngle,endAngle){
+      var radius=circle.radius //圆的半径
+      var angleDecrement=(startAngle-endAngle)/(string.length-1)//每个字母占的弧度
+      var angle=startAngle //
+
+      var index=0;
+      var character;
+
+      ctx.save()
+      ctx.fillStyle=TEXT_FILL_STYLE;
+      ctx.strokeStyle=TEXT_STROKE_STYLE;
+      ctx.font=TEXT_SIZE+"px Lucida Sans"
+
+      while(index<string.length){
+        character=string.charAt(index)
+        ctx.save()
+        ctx.beginPath()
+        ctx.translate(circle.x+Math.cos((Math.PI/180)*angle)*radius,circle.y-Math.sin((Math.PI/180)*angle)*radius)
+        ctx.rotate((Math.PI/2)-(Math.PI/180)*angle)   //Math.PI/2为旋转90度  Math.PI/180*X为旋转多少度
+        ctx.fillText(character,0,0)
+        ctx.strokeText(character,0,0)
+        angle-=angleDecrement
+        index++
+        ctx.restore()
+
+      }
+      ctx.restore()
+    }
+    ctx.textAlign="center"
+    ctx.textBaseLine="middle"
+   drawCircularText("Baby 520 turn around happily ",360,10)  //第三个参数表示文字首位是否相接 差了多少弧度
+  </script>
+
+<script type="text/javascript">
+
+  // data
+  //页面加载执行事件,常用
+  window.onload = function() {
+    //document.getElementById("pointer")：访问ID对象，onclick 点击事件
+    document.getElementById("pointer").onclick = function() {
+      var num = parseInt(Math.random() * 360) + 1; //求得随机的旋转度数
+
+
+      document.getElementById("zhuan").style.transform = 'rotate(' + (num + (360 * 6)) + 'deg)';
+
+      //得到一个1至360的数值，进行转盘分成几分的判断
+      //设定旋转变换3秒后执行下面的提示
+
+      let res = data.filter(v => num > v.start && num < v.end)
+
+      const resModal = document.querySelector(".res-inner")
+      const res1 = document.querySelector(".res-box")
+
+      setTimeout(() => {
+        resModal.innerHTML = `亲爱的：恭喜你获得${res[0].name}奖品。520快乐哦～`
+        // resModal.style.color = color[res[0].color]
+        res1.className = 'res-box show'
+      }, 6000)
+
+      console.log('res', res, num)
+    };
+  };
+</script>
 </body>
 </html>
